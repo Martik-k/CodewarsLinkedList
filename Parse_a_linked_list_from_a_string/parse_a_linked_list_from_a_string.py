@@ -24,12 +24,16 @@ def linked_list_from_string(s):
     '''
     >>> s = "1 -> 2 -> 3 -> None"
     >>> lst = linked_list_from_string(s)
-    >>> stringify(lst) == "1 -> 2 -> 3 -> None"
+    >>> stringify(lst) == s
+    True
+    >>> s = "None"
+    >>> lst = linked_list_from_string(s)
+    >>> stringify(lst) == s
     True
     '''
+    if s == 'None':
+        return None
     list_s = s.split(' -> ')[:-1]
-    if not list_s:
-        return Node(None)
 
     list_int = list(map(int, list_s))
 
@@ -40,7 +44,6 @@ def linked_list_from_string(s):
         current.next = Node(value)
         current = current.next
     return result
-
 
 if __name__ == '__main__':
     import doctest
